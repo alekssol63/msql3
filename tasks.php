@@ -28,9 +28,10 @@ if (!(empty($_POST['ready']))){
 	$pdo = new PDO('mysql:host=localhost;dbname=solopov;charset=utf8', $user, $pass);
 	$prep_q = $pdo->prepare('UPDATE tasks SET description=? WHERE id=?');
 	$changedtask=is_empty_val('changetask');
-	$id=$_POST['ready'];
-	$prep_q->execute(array($changedtask,$id));
-	
+	if (!(empty($changedtask))){
+		$id=$_POST['ready'];
+		$prep_q->execute(array($changedtask,$id));
+	}
 }
 if (!(empty($_POST['execute']))){
 	$pdo = new PDO('mysql:host=localhost;dbname=solopov;charset=utf8', $user, $pass);
