@@ -41,7 +41,7 @@ if (!(empty($_POST['execute']))){
 
 try {
 	$pdo = new PDO('mysql:host=localhost;dbname=solopov;charset=utf8', $user, $pass);	
-	$col_name = $pdo->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'tasks' AND table_schema = 'tasks'");
+	$col_name = $pdo->query("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = 'tasks' AND table_schema = 'solopov'");
 	if (!(empty($_POST['sortbydate']))){
 		$data =	$pdo->query("SELECT * FROM tasks ORDER BY date_added");
 	}
@@ -110,9 +110,9 @@ header("Refresh");
 					if (($key=='is_done')){
 						if (!(empty($row[$key]))){ ?>
 							<td> В процессе </td>
-							<? continue; } else { ?>
+							<?php continue; } else { ?>
 							<td style="background-color: LightGreen  "> Завершено </td>
-							<? continue; } ?>
+							<?php continue; } ?>
 					<?php }; ?>
 					<td> <?php echo strip_tags($value) ."</br>"; ?></td>							
 					<?php } ?>	
